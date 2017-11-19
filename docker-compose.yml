@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    apache2:
+        build: ./Apache2
+        ports:
+            - "8089:80"
+        links: 
+            - mysql   
+    mysql:
+        build: ./MySQL
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
