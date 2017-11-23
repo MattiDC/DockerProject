@@ -5,8 +5,11 @@ services:
         build: ./Apache2
         ports:
             - "8089:80"
-        links: 
-            - mysql   
+        depends_on: 
+            - mysql
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.5
     mysql:
         build: ./MySQL
         restart: always
@@ -15,3 +18,14 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: 'root'
             MYSQL_ROOT_HOST: '%'
+        networks:
+          vpcbr:
+            ipv4_address: 10.5.0.6
+           
+networks:
+  vpcbr:
+   driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
