@@ -3,8 +3,9 @@ version: '3'
 services:
     apache2:
         build: ./Apache2
+        restart: always
         ports:
-            - 8089:80
+            - 8080:80
         depends_on: 
             - mysql
             
