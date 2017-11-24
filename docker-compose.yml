@@ -5,7 +5,7 @@ services:
         build: ./Apache2
         ports:
             - "8089:80"
-        depends_on: 
+        links: 
             - mysql
             
     mysql:
